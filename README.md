@@ -53,7 +53,7 @@ This readme file was last updated on 2023-06-05 by Allison C Keever
   	Rscripts/SimPopFunctions.R: R script that includes functions for simulating deer populations  
   	Rscripts/TN_harvest_data_prep.R: R script that preps raw harvest data from Tennessee for analysis  
   	Data/AF_Harvest_Summary.csv: Summary of age-at-harvest data for female deer  
-  	Data/Am_Harvest_Summary.csv: Summay of age-at-harvest data for male deer  
+  	Data/Am_Harvest_Summary.csv: Summary of age-at-harvest data for male deer  
   	Data/dkmaster.RData: Raw deer harvest data from hunter check stations and reported harvest in Tennessee  
   	Data/dmus.csv: Deer management unit counties to relate county of harvest to deer management units  
   	Data/HarvestEstimates.csv: Estimated harvest from social surveys sent out to license holders  
@@ -67,8 +67,8 @@ This readme file was last updated on 2023-06-05 by Allison C Keever
 2. Number of cases/rows: 135
 
 3. Variable List:  
-	DMU: the deer management unit the harvest occured in; character  
-	Year: the harvest year (not calendar year) the harvest occured in; integer - range = 2005-2019  
+	DMU: the deer management unit the harvest occurred in; character  
+	Year: the harvest year (not calendar year) the harvest occurred in; integer - range = 2005-2019  
 	Fawn: the number of fawns harvested; integer  
 	Yearling: the number of yearlings harvested; integer  
 	Adult: the number of adults harvested; integer  
@@ -85,8 +85,8 @@ This readme file was last updated on 2023-06-05 by Allison C Keever
 2. Number of cases/rows: 135
 
 3. Variable List:  
-	DMU: the deer management unit the harvest occured in; character  
-	Year: the harvest year (not calendar year) the harvest occured in; integer - range = 2005-2019  
+	DMU: the deer management unit the harvest occurred in; character  
+	Year: the harvest year (not calendar year) the harvest occurred in; integer - range = 2005-2019  
 	Fawn: the number of fawns harvested; integer  
 	Yearling: the number of yearlings harvested; integer  
 	Adult: the number of adults harvested; integer  
@@ -139,9 +139,9 @@ This readme file was last updated on 2023-06-05 by Allison C Keever
 2. Number of cases/rows: 135
 
 3. Variable List:  
-	DMU: the deer management unit the harvest occured in; character  
-	Year: the harvest year (not calendar year) the harvest occured in; integer - range = 2005-2019  
-	Antlerless: the number of antleress deer reported as harvested; integer  
+	DMU: the deer management unit the harvest occurred in; character  
+	Year: the harvest year (not calendar year) the harvest occurred in; integer - range = 2005-2019  
+	Antlerless: the number of antlerless deer reported as harvested; integer  
 	Antlered: the number of antlered deer reported as harvested; integer  
 
 4. Missing data codes: None
@@ -156,7 +156,7 @@ This readme file was last updated on 2023-06-05 by Allison C Keever
 
 3. Variable List:  
 	.variable: the demographic rate the estimate is for. Hest = estimated harvest; HS = harvest survival rate; NS = natural survival rate; Report = reporting rate; N = abundance; S0 = neonate survival rate; lambda.dmu = population growth rate; rec.rate.dmu = recruitment rate  
-	DMU: the deer management unit the harvest occured in; character  
+	DMU: the deer management unit the harvest occurred in; character  
 	Year: calendar year for estimates; integer - range = 2005-2019  
 	Age: the age class for the estimates. F = fawn, Y = yearling; A = adult; character  
 	Sex: the sex class for the estimates. F = female; M = male; character  
