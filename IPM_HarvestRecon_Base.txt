@@ -1,0 +1,300 @@
+
+    model {
+
+
+    ### PRIORS ###______________________________________________________________
+
+    ## Population size___________________
+    
+    # Initial population size for each age class (a) and sex (s) by DMU (i). Ages are 0.5
+    # (fawns), 1.5 (yearlings), and 2.5+ (adults). For s, female = 1 and male = 2
+    # N[age, year, sex, DMU]
+    for(a in 1:nages){
+      for(s in 1:2){
+        for(i in 1:nDMUs){
+          N[a,1,s,i] ~ dnorm(initN[a,s,i], 1 / (initN[a,s,i]))T(0,)
+        } # end DMU loop
+      } # end sex loop
+    } # end age loop
+
+
+
+    ## Demographic rates___________________
+    
+    # Mean demographic rates - values for logit scale
+    for(a in 1:nages){
+      for(s in 1:2){
+        
+        # Natural survival (NS)
+        mu.NS[a,s] ~ dnorm(ns.shape[a,1,s], pow(ns.shape[a,2,s], -2))T(-10,10)
+        
+        # Hunting season survival (HS)
+        mu.HS[a,s] ~ dnorm(hs.shape[a,1,s], pow(hs.shape[a,2,s], -2))T(-10,10)
+        
+        # Reporting rates
+        mu.Report[a,s] ~ dnorm(report.shape[a,1,s], pow(report.shape[a,2,s], -2))T(-10,10)
+          
+      } # end sex loop
+    } # end age loop
+
+
+    # Mean neonate survival (S0) - values on logit scale
+    mu.S0 ~ dnorm(s0.shape[1,1], pow(s0.shape[1,2], -2))T(-10,10)
+    
+
+
+    # Components for fertility (F): productivity (m), sex ratio (s.ratio), survival
+    # Productivity (fawns/doe) on real scale
+    for(a in 1:nages){
+      m[a] ~ dgamma(m.shape[a,1], m.shape[a,2])T(0,5)
+    } # end age loop
+
+
+    # Sex ratio: 1 = probability of being female, 2 = probability of being male
+    s.ratio[1] <- 0.5
+    s.ratio[2] <- 1 - s.ratio[1]
+    
+    
+    # SDs for random year and site effects on demographic rates
+    for(a in 1:nages){
+      for(s in 1:2){
+        sd.NS.yr[a,s] ~ dgamma(sd.yr.gam[1,1], sd.yr.gam[1,2])T(0,5)
+        sd.HS.yr[a,s] ~ dgamma(sd.yr.gam[2,1], sd.yr.gam[2,2])T(0,5)
+        sd.Report.yr[a,s] ~ dgamma(sd.yr.gam[3,1], sd.yr.gam[3,2])T(0,5)
+        
+        
+        sd.NS.dmu[a,s] ~ dgamma(sd.dmu.gam[1,1], sd.dmu.gam[1,2])T(0,5)
+        sd.HS.dmu[a,s] ~ dgamma(sd.dmu.gam[2,1], sd.dmu.gam[2,2])T(0,5)
+        sd.Report.dmu[a,s] ~ dgamma(sd.dmu.gam[3,1], sd.dmu.gam[3,2])T(0,5)
+      }
+    }
+    
+    sd.S0.yr ~ dgamma(sd.yr.gam[4,1], sd.yr.gam[4,2])T(0,5)
+    sd.S0.dmu ~ dgamma(sd.dmu.gam[4,1], sd.dmu.gam[4,2])T(0,5)
+    
+    
+    # Random year effects for demographic rates
+    for(k in 1:(nyears + npredyrs)){
+      for(a in 1:nages){
+          eps.NS.yr[a,k] ~ dnorm(0, pow(sd.NS.yr[a,1], -2))T(-5,5)
+          eps.HS.yr[a,k] ~ dnorm(0, pow(sd.HS.yr[a,1], -2))T(-5,5)
+          
+        for(s in 1:2){
+          eps.Report.yr[a,k,s] ~ dnorm(0, pow(sd.Report.yr[a,s], -2))T(-5,5)
+        } # end sex loop
+      } # end age loop
+      
+      eps.S0.yr[k] ~ dnorm(0, pow(sd.S0.yr, -2))T(-5,5)
+    } # end year loop
+    
+    
+    # Random site effects for demographic rates
+    for(i in 1:nDMUs){
+      for(a in 1:nages){
+          eps.NS.dmu[a,i] ~ dnorm(0, pow(sd.NS.dmu[a,1], -2))T(-5,5)
+          eps.HS.dmu[a,i] ~ dnorm(0, pow(sd.HS.dmu[a,1], -2))T(-5,5)
+        for(s in 1:2){
+          eps.Report.dmu[a,s,i] ~ dnorm(0, pow(sd.Report.dmu[a,s], -2))T(-5,5)
+        } # end sex loop
+      } # end age loop
+      
+      eps.S0.dmu[i] ~ dnorm(0, pow(sd.S0.dmu, -2))T(-5,5)
+    } # end DMU loop
+    
+    
+    # Demogrphic rates on real scale 
+    for(k in 1:(nyears + npredyrs)){
+      for(i in 1:nDMUs){
+        for(a in 1:nages){
+          for(s in 1:2){
+            logit(NS[a,k,s,i]) <- mu.NS[a,s] + eps.NS.yr[a,k] + eps.NS.dmu[a,i]
+            logit(HS[a,k,s,i]) <- mu.HS[a,s] + eps.HS.yr[a,k] + eps.HS.dmu[a,i]
+            logit(Report[a,k,s,i]) <- mu.Report[a,s] + eps.Report.yr[a,k,s] + 
+                                      eps.Report.dmu[a,s,i]
+          } # end sex loop
+        
+        
+        # Fertility  
+        F[a,k,i] <- NS[a,k,1,i]^ (8 / 12) * HS[a,k,1,i] * m[a]  
+        } # end age loop
+        
+        for(s in 1:2){
+          logit(S0[k,s,i]) <- mu.S0 + eps.S0.yr[k] + eps.S0.dmu[i]
+  
+        } # end sex loop
+      } # end DMU loop
+    } # end year loop
+    
+    
+    
+
+
+    ### LIKELIHOOD ###__________________________________________________________
+    
+    
+    ## Ecological Process___________________
+    
+    # Change in abundance over time
+    for(k in 2:(nyears + npredyrs)){
+      for(i in 1:nDMUs){
+        for(s in 1:2){
+          # Projection for fawns
+          mu.fawn[k,s,i] <- N[1,k-1,1,i] * F[1,k-1,i] * s.ratio[s] * S0[k-1,s,i] + 
+                            N[2,k-1,1,i] * F[2,k-1,i] * s.ratio[s] * S0[k-1,s,i] + 
+                            N[3,k-1,1,i] * F[3,k-1,i] * s.ratio[s] * S0[k-1,s,i]
+          N[1,k,s,i] ~ dnorm(mu.fawn[k,s,i], 1 / mu.fawn[k,s,i])T(0,)
+          
+          # Projection for yearlings
+          mu.yearling[k,s,i] <- N[1,k-1,s,i] * HS[1,k-1,s,i] * NS[1,k-1,s,i]
+          tau.yearling[k,s,i] <- 1 / ((N[1,k-1,s,i] + 1) * HS[1,k-1,s,i] * NS[1,k-1,s,i] *
+            (1 - HS[1,k-1,s,i] * NS[1,k-1,s,i]))
+          N[2,k,s,i] ~ dnorm(mu.yearling[k,s,i], tau.yearling[k,s,i])T(0,)
+
+          # Projection for adults
+          mu.ad1[k,s,i] <- N[2,k-1,s,i] * HS[2,k-1,s,i] * NS[2,k-1,s,i]
+          tau.ad1[k,s,i] <- 1 / ((N[2,k-1,s,i] + 1) * HS[2,k-1,s,i] * NS[2,k-1,s,i] *
+            (1 - HS[2,k-1,s,i] * NS[2,k-1,s,i]))
+          N.yr[k,s,i] ~ dnorm(mu.ad1[k,s,i], tau.ad1[k,s,i])T(0,)
+          
+          mu.ad2[k,s,i] <- N[3,k-1,s,i] * HS[3,k-1,s,i] * NS[3,k-1,s,i]
+          tau.ad2[k,s,i] <- 1 / ((N[3,k-1,s,i] + 1) * HS[3,k-1,s,i] * NS[3,k-1,s,i] *
+            (1 - HS[3,k-1,s,i] * NS[3,k-1,s,i]))
+          N.ad[k,s,i] ~ dnorm(mu.ad2[k,s,i], tau.ad2[k,s,i])T(0,)
+          
+          N[3,k,s,i] <- N.yr[k,s,i] + N.ad[k,s,i]
+
+        } # end sex loop
+      } # end DMU loop
+    } # end year loop
+
+
+    # Estimated and reported harvest process
+    for(k in 1:(nyears + npredyrs)){
+      for(i in 1:nDMUs){
+        for(a in 1:nages){
+          for(s in 1:2){
+            # Harvest by age and sex
+            Hest[a,k,s,i] <- N[a,k,s,i] * (1 - HS[a,k,s,i])
+            
+            # Reported harvest by age and sex
+            Hrep[a,k,s,i] <- Hest[a,k,s,i] * Report[a,k,s,i]
+
+          } # end sex loop
+        } # end age loop
+      } # end DMU loop
+    } # end year loop
+    
+    
+
+    ## Observation process___________________
+
+    # Statewide observations
+    for(k in 1:nyears){
+      # Observation of reported harvest by bag type (antlerless and antlered)
+      # Antlerless is all females (Hrep[1:3,k,1,i]) and age 1 of males (Hrep[1,k,2,i])
+      # Antlered is yearling and adult bucks (Hrep[2:3,k,2,i])
+      y.H[k,1] ~ dnorm(sum(Hrep[,k,1,]) + sum(Hrep[1,k,2,]), 1 / (sum(Hrep[,k,1,]) + sum(Hrep[1,k,2,])))
+      y.H[k,2] ~ dnorm(sum(Hrep[2:3,k,2,]), 1 / sum(Hrep[2:3,k,2,]))
+
+      for(s in 1:2){
+        for(a in 1:nages){
+          # The proportion of each age class in harvest for the sexes
+          mu.A[a,k,s] <- sum(Hrep[a,k,s,]) / sum(Hrep[,k,s,])
+
+        } # end age loop
+      } # end sex loop
+
+      # Multinomial distribution for the observation of sex/age harvest
+      y.Af[,k] ~ dmulti(mu.A[,k,1], O.aged[k,1])
+      y.Am[,k] ~ dmulti(mu.A[,k,2], O.aged[k,2])
+      
+      
+      # Observations by DMUs
+      for(i in 1:nDMUs){
+        # Observation of reported harvest by bag type (antlerless and antlered)
+        # Antlerless is all females (Hrep[1:3,k,1,i]) and age 1 of males (Hrep[1,k,2,i])
+        # Antlered is yearling and adult bucks (Hrep[2:3,k,2,i])
+        y.H.dmu[k,1,i] ~ dnorm(sum(Hrep[,k,1,i]) + Hrep[1,k,2,i], 1 / (sum(Hrep[,k,1,i]) + Hrep[1,k,2,i]))
+        y.H.dmu[k,2,i] ~ dnorm(sum(Hrep[2:3,k,2,i]), 1 / sum(Hrep[2:3,k,2,i]))
+  
+        for(s in 1:2){
+          for(a in 1:nages){
+            # The proportion of each age class in harvest for the sexes
+            mu.A.dmu[a,k,s,i] <- Hrep[a,k,s,i] / sum(Hrep[,k,s,i])
+  
+          } # end age loop
+        } # end sex loop
+  
+        # Multinomial distribution for the observation of sex/age harvest
+        y.Af.dmu[,k,i] ~ dmulti(mu.A.dmu[,k,1,i], O.aged.dmu[k,1,i])
+        y.Am.dmu[,k,i] ~ dmulti(mu.A.dmu[,k,2,i], O.aged.dmu[k,2,i])
+        
+      } # end DMU loop
+    } # end year loop
+
+
+
+
+
+    ### DERIVED PARAMETERS ###__________________________________________________
+    
+    
+    ## Statewide ___________________
+
+    # Population and harvest totals
+    for(k in 1:(nyears + npredyrs)){
+      Total[k] <- sum(N[,k,,])
+      fawns[k] <- sum(N[1,k,,])
+      does[k] <- sum(N[2:3,k,1,])
+      bucks[k] <- sum(N[2:3,k,2,])
+      rec.rate[k] <- sum(N[1,k,,]) / sum(N[2:3,k,1,])      
+      H.total[k] <- sum(Hest[,k,,])
+      H.antlerless[k] <- sum(Hest[2:3,k,1,]) + sum(Hest[1,k,,])
+      H.yr.bucks[k] <- sum(Hest[2,k,2,])
+      H.ad.bucks[k] <- sum(Hest[3,k,2,])
+    } # end year loop
+    
+    
+    # Population growth rate
+    for(k in 1:(nyears + npredyrs - 1)){
+      lambda[k] <- sum(N[,k+1,,]) / sum(N[,k,,])
+      logla[k] <- log(lambda[k])
+    }
+
+    mlam <- exp((1 / (nyears + npredyrs - 1)) * sum(logla[1:(nyears + npredyrs - 1)]))
+    
+    
+
+    ## DMU ___________________
+    
+    
+    # Population and harvest totals by DMU
+    for(k in 1:(nyears + npredyrs)){
+      for(i in 1:nDMUs){
+        Total.dmu[i,k] <- sum(N[,k,,i])
+        fawns.dmu[i,k] <- sum(N[1,k,,i])
+        does.dmu[i,k] <- sum(N[2:3,k,1,i])
+        bucks.dmu[i,k] <- sum(N[2:3,k,2,i])
+        rec.rate.dmu[i,k] <- sum(N[1,k,,i]) / sum(N[2:3,k,1,i])
+        H.total.dmu[i,k] <- sum(Hest[,k,,i])
+        H.antlerless.dmu[i,k] <- sum(Hest[2:3,k,1,i]) + sum(Hest[1,k,,i])
+        H.yr.bucks.dmu[i,k] <- sum(Hest[2,k,2,i])
+        H.ad.bucks.dmu[i,k] <- sum(Hest[3,k,2,i])
+      }
+    }
+    
+    # Population growth rate
+    for(i in 1:nDMUs){
+      for(k in 1:(nyears + npredyrs - 1)){
+        lambda.dmu[i,k] <- sum(N[,k+1,,i]) / sum(N[,k,,i])
+        logla.dmu[i,k] <- log(lambda.dmu[i,k])
+      }
+      
+      mlam.dmu[i] <- exp((1 / (nyears + npredyrs - 1)) * sum(logla.dmu[i,1:(nyears + npredyrs - 1)]))
+    }
+
+
+    
+    } # End model text
+    
+    
