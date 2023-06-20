@@ -25,6 +25,10 @@ authors:
     affiliation: >-
       College of Arts and Sciences, Tennessee Tech
       University
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.8061220
 repository-code: 'https://github.com/akeever2/Abundance_HarvestedPops'
 license: MIT
+version: 1.0.0
 date-released: '2023-06-20'
