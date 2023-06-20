@@ -3,7 +3,7 @@
 Code and data for: 
 Keever, A. C., J. D. Kelly, and B. S. Cohen. Estimating abundance of harvested populations at the management unit scale. _In preparation_
 
-This repository provides all code and raw data (and associated metadata) to recreate the analyses for the above manuscript (Keever et al., _In preparation_). 
+This repository provides all code and raw data (and associated metadata) to recreate the analyses for the above manuscript (Keever et al., _In preparation_). Below is the metadata for files in this repository. 
 
 This readme file was last updated on 2023-06-05 by Allison C Keever
 
@@ -174,6 +174,30 @@ This readme file was last updated on 2023-06-05 by Allison C Keever
 4. Missing data codes: NA
 
 5. Specialized formats or other abbreviations used: None
+  
+## Metadata: Data-specific information for - dkmaster.RData
+
+1. Number of variables: 12
+
+2. Number of cases/rows: 2,431,940
+
+3. Variable List:  
+	county: the Tennessee county in which the harvest occurred; character
+	age: the age of the deer (0.5, 1.5, 2.5, 3.5, 4.5, and 5.5+); character
+	sex: sex of the harvested deer; character
+	huntyear: year of harvest based on the hunting season year, not calendar year; factor
+	bag: type of bag (antlered or antlerless); character 
+	HarvestDate: date of harvest; date
+	AntlerPoints: antler points of the harvested deer; numeric
+	Weight: weight of the harvested deer; numeric
+	InsideSpreadLenghtInches: inside spread of the harvested deer in inches; numeric
+	beamlength: beam length of the harvested deer; numeric
+	beamcirc: beam circumference of the harvested deer; numeric
+	spread: antler spread of the harvested deer; numeric
+
+5. Missing data codes: NA
+
+6. Specialized formats or other abbreviations used: None
   
 ## License
 
