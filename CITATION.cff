@@ -27,7 +27,7 @@ authors:
       University
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.8061220
+    value: 10.5281/zenodo.8061219
 repository-code: 'https://github.com/akeever2/Abundance_HarvestedPops'
 license: MIT
 version: 1.0.0
