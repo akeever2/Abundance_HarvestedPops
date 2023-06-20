@@ -5,7 +5,7 @@ Keever, A. C., J. D. Kelly, and B. S. Cohen. Estimating abundance of harvested p
 
 This repository provides all code and raw data (and associated metadata) to recreate the analyses for the above manuscript (Keever et al., _In preparation_). Below is the metadata for files in this repository. 
 
-This readme file was last updated on 2023-06-05 by Allison C Keever
+This readme file was last updated on 2023-06-20 by Allison C Keever
 
 ## Metadata: General Information
 
