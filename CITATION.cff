@@ -1,0 +1,33 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Code and data for: Estimating abundance of harvested
+  populations at the management unit scale.
+message: >-
+  If you use this dataset, please cite it using the metadata
+  from this file.
+type: dataset
+authors:
+  - given-names: Allison
+    name-particle: C
+    family-names: Keever
+    email: akeever@tntech.edu
+    affiliation: >-
+      College of Arts and Sciences, Tennessee Tech
+      University
+    orcid: 'https://orcid.org/0000-0002-5194-3987'
+  - given-names: James
+    name-particle: D
+    family-names: Kelly
+    affiliation: Tennessee Wildlife Resources Agency
+  - given-names: 'Bradley '
+    name-particle: S
+    family-names: Cohen
+    affiliation: >-
+      College of Arts and Sciences, Tennessee Tech
+      University
+repository-code: 'https://github.com/akeever2/Abundance_HarvestedPops'
+license: MIT
+date-released: '2023-06-20'
