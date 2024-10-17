@@ -20,6 +20,9 @@ authors:
   - given-names: James D
     family-names: Kelly
     affiliation: Tennessee Wildlife Resources Agency
+  - given-names: Garrett B
+    family-names: Clevinger
+    affiliation: Tennessee Wildlife Resources Agency
   - given-names: Bradley S
     family-names: Cohen
     affiliation: >-
@@ -30,5 +33,5 @@ identifiers:
     value: 10.5281/zenodo.8061219
 repository-code: 'https://github.com/akeever2/Abundance_HarvestedPops'
 license: MIT
-version: 1.0.0
-date-released: '2023-06-20'
+version: 1.2.0
+date-released: '2024-10-19'
