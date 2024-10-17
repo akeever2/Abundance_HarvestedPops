@@ -1,96 +1,96 @@
-FID,NAME,label,alias,division,pool
--1,Maury,Middle 4,M4,Middle,M34
--1,Marshall,Middle 4,M4,Middle,M34
--1,Giles,Middle 4,M4,Middle,M34
--1,Moore,Middle 4,M4,Middle,M34
--1,Lincoln,Middle 4,M4,Middle,M34
--1,Franklin,Middle 4,M4,Middle,M34
--1,Obion,West 1,W1,West,W1
--1,Lake,West 1,W1,West,W1
--1,Weakley,West 1,W1,West,W1
--1,Henry,West 1,W1,West,W1
--1,Gibson,West 1,W1,West,W1
--1,Dyer,West 1,W1,West,W1
--1,Carroll,West 1,W1,West,W1
--1,Crockett,West 1,W1,West,W1
--1,Lauderdale,West 1,W1,West,W1
--1,Benton,Middle 3,M3,Middle,M34
--1,Decatur,Middle 3,M3,Middle,M34
--1,Perry,Middle 3,M3,Middle,M34
--1,Henderson,Middle 3,M3,Middle,M34
--1,Lewis,Middle 3,M3,Middle,M34
--1,Wayne,Middle 3,M3,Middle,M34
--1,Lawrence,Middle 3,M3,Middle,M34
--1,Hardin,Middle 3,M3,Middle,M34
--1,Stewart,Middle 1,M1,Middle,M12
--1,Montgomery,Middle 1,M1,Middle,M12
--1,Houston,Middle 1,M1,Middle,M12
--1,Sullivan,East 2,E2,East,E12
--1,Johnson,East 2,E2,East,E12
--1,Hawkins,East 2,E2,East,E12
--1,Carter,East 2,E2,East,E12
--1,Washington,East 2,E2,East,E12
--1,Greene,East 2,E2,East,E12
--1,Hamblen,East 2,E2,East,E12
--1,Unicoi,East 2,E2,East,E12
--1,Jefferson,East 2,E2,East,E12
--1,Cocke,East 2,E2,East,E12
--1,Sevier,East 2,E2,East,E12
--1,Blount,East 2,E2,East,E12
--1,Monroe,East 2,E2,East,E12
--1,Polk,East 2,E2,East,E12
--1,Pickett,East 1,E1,East,E12
--1,Scott,East 1,E1,East,E12
--1,Claiborne,East 1,E1,East,E12
--1,Hancock,East 1,E1,East,E12
--1,Campbell,East 1,E1,East,E12
--1,Fentress,East 1,E1,East,E12
--1,Union,East 1,E1,East,E12
--1,Grainger,East 1,E1,East,E12
--1,Morgan,East 1,E1,East,E12
--1,Anderson,East 1,E1,East,E12
--1,Cumberland,East 1,E1,East,E12
--1,Bledsoe,East 1,E1,East,E12
--1,Sequatchie,East 1,E1,East,E12
--1,Grundy,East 1,E1,East,E12
--1,Knox,East 3,E3,East,E3
--1,Roane,East 3,E3,East,E3
--1,Rhea,East 3,E3,East,E3
--1,Meigs,East 3,E3,East,E3
--1,McMinn,East 3,E3,East,E3
--1,Loudon,East 3,E3,East,E3
--1,Hamilton,East 3,E3,East,E3
--1,Bradley,East 3,E3,East,E3
--1,Marion,East 3,E3,East,E3
--1,Robertson,Middle 1,M1,Middle,M12
--1,Sumner,Middle 1,M1,Middle,M12
--1,Trousdale,Middle 2,M2,Middle,M12
--1,Cheatham,Middle 1,M1,Middle,M12
--1,Smith,Middle 2,M2,Middle,M12
--1,Dickson,Middle 1,M1,Middle,M12
--1,Humphreys,Middle 1,M1,Middle,M12
--1,Rutherford,Middle 2,M2,Middle,M12
--1,Williamson,Middle 1,M1,Middle,M12
--1,Hickman,Middle 1,M1,Middle,M12
--1,Bedford,Middle 2,M2,Middle,M12
--1,Macon,Middle 2,M2,Middle,M12
--1,Clay,Middle 2,M2,Middle,M12
--1,Overton,Middle 2,M2,Middle,M12
--1,Jackson,Middle 2,M2,Middle,M12
--1,Davidson,Middle 1,M1,Middle,M12
--1,Wilson,Middle 2,M2,Middle,M12
--1,Putnam,Middle 2,M2,Middle,M12
--1,DeKalb,Middle 2,M2,Middle,M12
--1,Cannon,Middle 2,M2,Middle,M12
--1,Warren,Middle 2,M2,Middle,M12
--1,Van Buren,Middle 2,M2,Middle,M12
--1,White,Middle 2,M2,Middle,M12
--1,Coffee,Middle 2,M2,Middle,M12
--1,Haywood,West 2,W2,West,W2
--1,Madison,West 2,W2,West,W2
--1,Chester,West 2,W2,West,W2
--1,Tipton,West 2,W2,West,W2
--1,Hardeman,West 2,W2,West,W2
--1,Shelby,West 2,W2,West,W2
--1,Fayette,West 2,W2,West,W2
--1,McNairy,West 2,W2,West,W2
+"","DMU","County"
+"1","Unit.1","Lake"
+"2","Unit.2","Stewart"
+"3","Unit.3","Macon"
+"4","Unit.4","Pickett"
+"5","Unit.5","Knox"
+"6","Unit.6","Johnson"
+"7","Unit.1","Obion"
+"8","Unit.2","Montgomery"
+"9","Unit.3","Clay"
+"10","Unit.4","Fentress"
+"11","Unit.5","Loudon"
+"12","Unit.6","Sullivan"
+"13","Unit.1","Weakley"
+"14","Unit.2","Robertson"
+"15","Unit.3","Trousdale"
+"16","Unit.4","Scott"
+"17","Unit.5","Roane"
+"18","Unit.6","Carter"
+"19","Unit.1","Henry"
+"20","Unit.2","Sumner"
+"21","Unit.3","Wilson"
+"22","Unit.4","Campbell"
+"23","Unit.5","Rhea"
+"24","Unit.6","Washington"
+"25","Unit.1","Dyer"
+"26","Unit.2","Houston"
+"27","Unit.3","Smith"
+"28","Unit.4","Claiborne"
+"29","Unit.5","Meigs"
+"30","Unit.6","Unicoi"
+"31","Unit.1","Gibson"
+"32","Unit.2","Dickson"
+"33","Unit.3","Cannon"
+"34","Unit.4","Hancock"
+"35","Unit.5","McMinn"
+"36","Unit.6","Greene"
+"37","Unit.1","Carroll"
+"38","Unit.2","Humphreys"
+"39","Unit.3","Jackson"
+"40","Unit.4","Grainger"
+"41","Unit.5","Bradley"
+"42","Unit.6","Hawkins"
+"43","Unit.1","Crockett"
+"44","Unit.2","Hickman"
+"45","Unit.3","Overton"
+"46","Unit.4","Union"
+"47","Unit.5","Hamilton"
+"48","Unit.6","Hamblen"
+"49","Unit.1","Lauderdale"
+"50","Unit.2","Williamson"
+"51","Unit.3","Putnam"
+"52","Unit.4","Anderson"
+"53","Unit.5","Marion"
+"54","Unit.6","Jefferson"
+"55","Unit.1","Tipton"
+"56","Unit.2","Cheatham"
+"57","Unit.3","DeKalb"
+"58","Unit.4","Morgan"
+"59","Unit.6","Cocke"
+"60","Unit.1","Haywood"
+"61","Unit.2","Davidson"
+"62","Unit.3","White"
+"63","Unit.4","Cumberland"
+"64","Unit.6","Sevier"
+"65","Unit.1","Madison"
+"66","Unit.2","Maury"
+"67","Unit.3","Van Buren"
+"68","Unit.4","Bledsoe"
+"69","Unit.6","Blount"
+"70","Unit.1","Chester"
+"71","Unit.2","Marshall"
+"72","Unit.3","Coffee"
+"73","Unit.4","Grundy"
+"74","Unit.6","Monroe"
+"75","Unit.1","Shelby"
+"76","Unit.2","Giles"
+"77","Unit.3","Warren"
+"78","Unit.4","Sequatchie"
+"79","Unit.6","Polk"
+"80","Unit.1","Fayette"
+"81","Unit.2","Lincoln"
+"82","Unit.3","Bedford"
+"83","Unit.1","Hardeman"
+"84","Unit.2","Perry"
+"85","Unit.3","Rutherford"
+"86","Unit.1","McNairy"
+"87","Unit.2","Lewis"
+"88","Unit.3","Moore"
+"89","Unit.1","Henderson"
+"90","Unit.2","Lawrence"
+"91","Unit.3","Franklin"
+"92","Unit.1","Hardin"
+"93","Unit.2","Wayne"
+"94","Unit.1","Benton"
+"95","Unit.1","Decatur"
