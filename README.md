@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/645453351.svg)](https://zenodo.org/badge/latestdoi/645453351)
+[![DOI](https://zenodo.org/badge/645453351.svg)](https://doi.org/10.5281/zenodo.8061220)
 
 # Abundance_HarvestedPops
 
